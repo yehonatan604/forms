@@ -2,6 +2,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "./schemas/Login.schemas";
+import { Button, Label, TextInput } from "flowbite-react";
 
 function App() {
   // const [form, setForm] = useState({
@@ -41,21 +42,26 @@ function App() {
     <main className="flex min-h-screen items-center justify-center gap-2 dark:bg-gray-800">
       <form onSubmit={handleSubmit(submitForm)}>
         <div className="form-control">
-          <label htmlFor="email" className="label">
+          <Label htmlFor="email" className="label">
             Email
-          </label>
-          <input type="email" id="email" {...register("email")} />
+          </Label>
+          <TextInput type="email" id="email" {...register("email")} />
         </div>
         <div className="form-control">
-          <label htmlFor="password" className="label">
+          <Label htmlFor="password" className="label">
             Password
-          </label>
-          <input type="password" id="password" {...register("password")} />
+          </Label>
+          <TextInput
+            type="password"
+            id="password"
+            {...register("password")}
+            color={errors.password ? "failure" : "success"}
+          />
           <span className="error">{errors.password?.message}</span>
         </div>
-        <button type="submit" className="btn">
+        <Button type="submit" className="btn">
           Submit
-        </button>
+        </Button>
       </form>
     </main>
   );
